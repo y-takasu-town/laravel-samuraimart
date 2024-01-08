@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -75,5 +76,12 @@ class UserController extends Controller
          return view('users.edit_password');
      }
    
-    
+     public function favorite()
+     {
+         $user = Auth::user();
+ 
+         $favorites = $user->favorites(Product::class)->get();
+ 
+         return view('users.favorite', compact('favorites'));
+     }
 }
