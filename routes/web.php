@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\WebController;
 use App\Http\Controllers\ReviewController;
 
 
@@ -19,9 +20,7 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',  [WebController::class, 'index'])->name('top');
 
 Route::controller(CartController::class)->group(function () {
     Route::get('users/carts', 'index')->name('carts.index');
